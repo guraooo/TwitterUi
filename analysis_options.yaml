@@ -1,0 +1,52 @@
+include: package:flutter_lints/flutter.yaml
+# ソースコードにDartの言語仕様で指定されているエラーや警告などの潜在的なバグがないかを解析
+analyzer:
+  # Dartのデフォルトの型チェックよりも厳格にできる
+  strong-mode:
+    # 暗黙的型変換の実装を禁止する
+    implicit-casts: false
+    # 動的な型宣言で使用するdynamic型の使用を禁止する
+    implicit-dynamic: false
+
+  # 一部のファイルを解析の対象から除外する
+  exclude:
+    # ファイルを直接指定
+#    - lib/client.dart
+    # フォルダ内の特定の拡張子を指定
+    - lib/freezed/*.freezed.dart
+    # フォルダ内の全てのファイルを指定
+    - test/**
+
+  # 特定のルールをプロジェクトで無効にする
+  errors:
+    # ルール名：ignore
+    # Analyzerの無効化：TODO表記を無視する
+    todo: ignore
+    # Linterの無効化
+    avoid_empty_else: ignore
+
+    # 解析のルールの重要度を変更する
+    # ルール名：重要度（info、warning、error）
+    # Analyzerの変更：returnの省略を警告する
+    missing_return: warning
+    # Linterの変更
+    prefer_contains: error
+
+# ソースコードがDartのスタイルガイドラインや設定した他のガイドラインに準拠しているかを解析
+linter:
+  # linterのルール（一覧：<https://dart-lang.github.io/linter/lints/index.html）>
+  rules:
+    # クロージャーには型を厳密に指定しない。冗長的
+    avoid_types_on_closure_parameters: true
+    avoid_void_async: true
+    cancel_subscriptions: true
+    close_sinks: true
+    # importの順序（dart: → package: →その他）
+    directives_ordering: true
+    package_api_docs: true
+    package_prefixed_library_names: true
+    # テスト向け。オプジェクトタイプが同じかの確認
+    test_types_in_equals: true
+    throw_in_finally: true
+    unawaited_futures: true
+    unnecessary_statements: true
